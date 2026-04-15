@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trifusesurv"
+version = "0.1.0"
+description = "TriFuseSurv contour-aware OPSCC survival workflows packaged as an installable Python project."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "einops",
+  "monai",
+  "numpy",
+  "opencv-python-headless==4.10.0.84",
+  "pandas",
+  "pydicom",
+  "rt-utils",
+  "scikit-learn",
+  "SimpleITK",
+  "torch",
+]
+
+[project.scripts]
+trifusesurv-contour-aware-survival-train = "trifusesurv.multimodal_survival.train:main"
+trifusesurv-survival-evaluate-oof-cindex = "trifusesurv.multimodal_survival.evaluate_oof_cindex:main"
+trifusesurv-preprocess-export-swinunetr = "trifusesurv.preprocessing.export_swinunetr:main"
+trifusesurv-make-cv-splits = "trifusesurv.preprocessing.make_cv_splits:main"
+trifusesurv-prepare-opscc-tabular = "trifusesurv.preprocessing.prepare_opscc_tabular:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
